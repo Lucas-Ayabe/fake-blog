@@ -33,7 +33,10 @@
           <button class="button">Search</button>
         </form>
 
-        <button @click="openModal()" class="button">Add post</button>
+        <button @click="openModal()" class="button">
+          <span>+</span>
+          <span class="@sm">Add post</span>
+        </button>
       </header>
 
       <ul x-show="posts.length" class="posts-showcase">
