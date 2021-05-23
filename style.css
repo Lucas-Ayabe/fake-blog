@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --flow: 1em;
+}
+
+html {
+  font-size: 100%;
+  font-family: "Jetbrains Mono", monospace;
+}
+
+body {
+  padding: 3em 0;
+}
+
+main {
+  --flow: 2em;
+}
+
+.flow * + * {
+  margin-top: var(--flow, 1em);
+}
+
+.container {
+  max-width: 50rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.125em;
+}
+
+.button {
+  background: hsl(200, 100%, 50%);
+  padding: 1em 2.25em;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 4px;
+  border: 2px solid hsl(200, 100%, 50%);
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.button:hover {
+  background: hsl(200, 80%, 60%);
+  border-color: hsl(200, 80%, 60%);
+}
+
+.title.-display {
+  font-size: 3em;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.posts-header {
+  --flow: 0;
+  display: flex;
+}
+
+.posts-header > * + * {
+  margin-left: 1em;
+}
+
+.posts-showcase {
+  --flow: 3em;
+  list-style: none;
+}
+
+.post {
+  --flow: 1em;
+}
+
+.search {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.search > .field {
+  flex: 1;
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  font-size: inherit;
+  font-size: inherit;
+  border: 2px solid #aaa;
+  border-radius: 4px 0 0 4px;
+}
+
+.search > .field:focus {
+  outline: none;
+  border: 2px dashed hsl(200, 100%, 50%);
+  border-right: none;
+}
+
+.search > .button {
+  --flow: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.modal {
+  --flow: 0;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal > .content {
+  --flow: 1em;
+
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.card {
+  padding: 1.5em;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.card > .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  --flow: 0;
+
+  background: none;
+  padding: 0;
+  border: none;
+  font-size: 2.25em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.fade {
+  transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-from {
+  opacity: 0;
+}
+
+.fade-to {
+  opacity: 1;
+}

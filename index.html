@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake Blog</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+  </head>
+  <body
+    x-data="{...modal(), ...posts()}"
+    x-init="loadPosts($watch)"
+    class="flow"
+  >
+    <header class="container">
+      <h1 class="title -display">Fake Blog</h1>
+    </header>
+
+    <main class="container">
+      <header class="posts-header">
+        <form x-on:submit.prevent="filterPosts()" class="search">
+          <input
+            placeholder="Type to search a post title..."
+            x-model.debounce.300="search"
+            type="search"
+            class="field"
+          />
+
+          <button class="button">Search</button>
+        </form>
+
+        <button @click="openModal()" class="button">Add post</button>
+      </header>
+
+      <ul x-show="posts.length" class="posts-showcase">
+        <template x-for="post in posts" :key="post.id">
+          <li>
+            <article class="post">
+              <h3 class="title" x-text="post.title"></h3>
+              <p class="lead" x-text="post.body"></p>
+            </article>
+          </li>
+        </template>
+      </ul>
+
+      <p x-show="posts.length === 0">Loading posts...</p>
+    </main>
+
+    <article
+      class="modal"
+      x-show="isOpen"
+      x-transition:enter="fade"
+      x-transition:enter-start="fade-from"
+      x-transition:enter-end="fade-to"
+      x-transition:leave="fade"
+      x-transition:leave-start="fade-to"
+      x-transition:leave-end="fade-from"
+    >
+      <form
+        @click.away="closeModal()"
+        @submit.prevent="addPost()"
+        class="content card container"
+      >
+        <div class="header">
+          <h2>Add post</h2>
+
+          <button @click="closeModal()" type="button" class="close">
+            &times;
+          </button>
+        </div>
+
+        <button class="button">Add post</button>
+      </form>
+    </article>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
